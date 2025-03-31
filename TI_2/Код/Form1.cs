@@ -26,7 +26,11 @@ namespace Laba2_LFSR
         public fMain()
         {
             InitializeComponent();
-            _strInitialState = ""; 
+            _strInitialState = "";
+
+            txtbInputText.ReadOnly = true;
+            txtbOutputText.ReadOnly = true;
+            txtbKey.ReadOnly = true;
         }
 
         private void btnOutput_Click(object sender, EventArgs e)
@@ -194,6 +198,11 @@ namespace Laba2_LFSR
                     _arrOutputText = getOutputText(_arrInputText, _arrKey);
                     txtbOutputText.Text = convertBitArrayToStr(_arrOutputText);
                     setOutputText(_arrOutputText, _fileOutput);
+
+                    //Разблокируем поля после обработки(если нужно)
+                    txtbInputText.ReadOnly = false;
+                    txtbOutputText.ReadOnly = false;
+                    txtbKey.ReadOnly = false;
                 }
                 else
                     MessageBox.Show("Ошибка открытия файла", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
